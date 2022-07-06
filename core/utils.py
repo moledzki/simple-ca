@@ -136,7 +136,7 @@ class Ca:
         self._eror_processing(p, path)
 
     def _create_root_crt(self, data, validity_period):
-        command_generate_root_crt = 'openssl req -x509 -new -key {path_key} -days {validity_period} -out {path_crt}'.format(
+        command_generate_root_crt = 'openssl req -x509 -new -key {path_key} -days {validity_period} -out {path_crt} -utf8'.format(
             path_key=self.path_root_key, path_crt=self.path_root_crt, validity_period=validity_period)
 
         command_subj_root_crt = ' -subj "'
@@ -172,7 +172,7 @@ class Ca:
                 f.write(x.encode())
 
     def _create_req_crt(self, path):
-        command_generate_req = '/bin/bash -c "openssl req -new -key {path_key} -out {path_csr} -config <( cat {path_config} )"'.format(
+        command_generate_req = '/bin/bash -c "openssl req -new -key {path_key} -out {path_csr} -utf8 -config <( cat {path_config} )"'.format(
             path_key=path + '.key', path_csr=path + '.csr', path_config=path + '.cnf')
 
         p = subprocess.run(command_generate_req, shell=True, stderr=subprocess.PIPE, universal_newlines=True)
@@ -181,7 +181,7 @@ class Ca:
 
     def _create_site_crt(self, path, validity_period):
         command_generate_crt = 'openssl x509 -req -in {path_csr} -CA {path_root_crt} -CAkey {path_root_key}' \
-                               ' -CAcreateserial -out {path_crt} -days {validity_period} -extfile {path_ext}'.format(
+                               ' -CAcreateserial -out {path_crt} -utf8 -days {validity_period} -extfile {path_ext}'.format(
             path_csr=path + '.csr', path_root_crt=self.path_root_crt, path_root_key=self.path_root_key, path_crt=path + '.crt',
             validity_period=validity_period, path_ext=path + '.ext')
 
