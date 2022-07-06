@@ -13,10 +13,10 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
                     python3-pip npm
 
 
-RUN locale-gen ru_RU.UTF-8
-ENV LANG ru_RU.UTF-8
-ENV LANGUAGE ru_RU:ru
-ENV LC_ALL ru_RU.UTF-8
+RUN locale-gen pl_PL.UTF-8
+ENV LANG pl_PL.UTF-8
+ENV LANGUAGE pl_PL:pl
+ENV LC_ALL pl_PL.UTF-8
 
 RUN mkdir /var/log/ca
 
