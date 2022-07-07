@@ -15,12 +15,11 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
 COPY . /opt/ca
 WORKDIR /opt/ca
 RUN make build
-RUN ls
 
 FROM ubuntu:22.10 as app
 RUN DEBIAN_FRONTEND=noninteractive apt-get clean && \
     apt-get update && \
-    apt-get install -y \
+    apt-get install -y --no-install-recommends \
                     vim-tiny \
                     supervisor \
                     curl \
@@ -32,7 +31,7 @@ ENV PATH="/opt/ca/.virtualenv/bin:$PATH"
 COPY --from=builder /opt/ca/.virtualenv /opt/ca/.virtualenv
 RUN rm -rf static/node_modules; 
 COPY --from=builder /opt/ca/node_modules /opt/ca/node_modules
-RUN ls -la /opt/ca
+
 RUN mkdir /var/log/ca
 
 ENV PYTHONUNBUFFERED 1
