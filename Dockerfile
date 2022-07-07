@@ -50,4 +50,4 @@ VOLUME /data/
 VOLUME /conf/
 VOLUME /static/
 COPY --chmod=755 docker-entrypoint.sh /
-CMD /docker-entrypoint.sh 
+CMD [ "/docker-entrypoint.sh" ] 
