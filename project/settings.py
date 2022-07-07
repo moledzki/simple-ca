@@ -137,6 +137,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
+STATICFILES_DIRS = [
+    "node_modules"
+]
+
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
 LOGIN_EXEMPT_URLS = (
