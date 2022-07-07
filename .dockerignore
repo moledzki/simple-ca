@@ -9,4 +9,5 @@ media/
 htmlcov/
 .coverage
 package-lock.json
-
+.virtualenv
+.build
