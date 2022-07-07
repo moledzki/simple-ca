@@ -10,3 +10,6 @@ htmlcov/
 .srl
 __pycache__
 package-lock.json
+.virtualenv
+build-npm
+static
