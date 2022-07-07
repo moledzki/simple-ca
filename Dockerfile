@@ -2,7 +2,9 @@
 # docker push telminov/ca
 
 FROM ubuntu:22.10 as builder
-MAINTAINER telminov <telminov@soft-way.biz>
+LABEL org.opencontainers.image.authors="telminov <telminov@soft-way.biz>"
+
+
 
 RUN apt-get clean && apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
