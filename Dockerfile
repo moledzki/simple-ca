@@ -1,22 +1,22 @@
 # docker build -t telminov/ca .
 # docker push telminov/ca
 
-FROM ubuntu:22.10 as builder
+FROM ubuntu:20.04 as builder
 LABEL org.opencontainers.image.authors="telminov <telminov@soft-way.biz>"
-
-
 
 RUN apt-get clean && apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
                     vim \
                     supervisor \
                     curl \
-                    python3-virtualenv npm
+                    python3-virtualenv \
+                    python3-dev \
+                    npm
 COPY . /opt/ca
 WORKDIR /opt/ca
 RUN make build
 
-FROM ubuntu:22.10 as app
+FROM ubuntu:20.04 as app
 RUN DEBIAN_FRONTEND=noninteractive apt-get clean && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
@@ -24,7 +24,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get clean && \
                     supervisor \
                     curl \
                     python3 \
-                    nodejs &&\
+                    openssl \
+                    nodejs && \
     apt-get clean all
 
 ENV PATH="/opt/ca/.virtualenv/bin:$PATH"
