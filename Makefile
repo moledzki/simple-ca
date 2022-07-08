@@ -35,4 +35,4 @@ docker-run: docker-build
 	docker run -e SECRET_KEY=dupa -e ALLOWED_HOST=localhost -e ADMIN_NAME=admin -e ADMIN_PASSWORD=admin -e ADMIN_EMAIL=admin@local.network -p 8080:80 --name simple-ca-dev --rm $(DOCKER_IMAGE_NAME)
 
 docker-run-persistent: docker-build
-	docker run -e SECRET_KEY=dupa -e ALLOWED_HOST=localhost -e ADMIN_NAME=admin -e ADMIN_PASSWORD=admin -e ADMIN_EMAIL=admin@local.network -p 8888:80 --name simple-ca-persistent -v simple-ca-data:/data --rm $(DOCKER_IMAGE_NAME)
+	docker run -e DB_PATH=/data/db.sqlite3 -e SECRET_KEY=dupa -e ALLOWED_HOST=localhost -e ADMIN_NAME=admin -e ADMIN_PASSWORD=admin -e ADMIN_EMAIL=admin@local.network -p 8888:80 --name simple-ca-persistent -v simple-ca-data:/data --rm $(DOCKER_IMAGE_NAME)
