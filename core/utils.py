@@ -181,7 +181,7 @@ class Ca:
 
     def _create_site_crt(self, path, validity_period):
         command_generate_crt = 'openssl x509 -req -in {path_csr} -CA {path_root_crt} -CAkey {path_root_key}' \
-                               ' -CAcreateserial -out {path_crt} -utf8 -days {validity_period} -extfile {path_ext}'.format(
+                               ' -CAcreateserial -out {path_crt} -days {validity_period} -extfile {path_ext}'.format(
             path_csr=path + '.csr', path_root_crt=self.path_root_crt, path_root_key=self.path_root_key, path_crt=path + '.crt',
             validity_period=validity_period, path_ext=path + '.ext')
 
