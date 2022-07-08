@@ -1,7 +1,7 @@
 # docker build -t telminov/ca .
 # docker push telminov/ca
 
-FROM ubuntu:20.04 as builder
+FROM ubuntu:22.04 as builder
 LABEL org.opencontainers.image.authors="telminov <telminov@soft-way.biz>"
 
 RUN apt-get clean && apt-get update
@@ -16,7 +16,7 @@ COPY . /opt/ca
 WORKDIR /opt/ca
 RUN make build
 
-FROM ubuntu:20.04 as app
+FROM ubuntu:22.04 as app
 RUN DEBIAN_FRONTEND=noninteractive apt-get clean && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
