@@ -13,3 +13,5 @@ __pycache__
 /.virtualenv
 /.build
 /static
+.vscode/dryrun.log
+.vscode/configurationCache.log
